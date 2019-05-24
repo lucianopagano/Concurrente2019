@@ -13,14 +13,17 @@
 PROGRAM Ocho
 BEGIN
 
-	chan enviarUsuario();
-	chan enviarDirector();
+	chan enviarUsuario(int usuario);
+	chan enviarDirector(int director);
+	chan impresoraLibre(int impresora);
+	chan enviarAImprimir();
+	
 	process Usuario [u=1 to N]
 	BEGIN
 		while(true)
 		DO
 			//realizar trabajo
-			send enviarUsuario();
+			send enviarUsuario(u);
 		END
 	END
 
@@ -29,7 +32,43 @@ BEGIN
 		while(true)
 		DO
 			//realizar trabajo
-			send enviarUsuario();
+			send enviarUsuario(1);
+		END
+	END
+
+
+	process Coordinador()
+	BEGIN
+		queue colaUsuario;
+		queue colaDirector;
+		while(true)
+		DO
+			if(!EMPTY(enviarDirector))
+			THEN
+				int director;
+				recive(enviarDirector(director));
+				colaDirector.push(director);
+			
+			[](!EMPTY(enviarUsuario) && EMPTY(enviarDirector))
+			THEN
+				int usuario;
+				recive(enviarUsuario(usuario));
+				colaDirector.push(director);
+			END
+
+
+			int impresora;
+			if(!EMPTY(colaDirector))
+			THEN
+				recive(impresoraLibre(impresora));
+
+			END
+
+			IF(!EMPTY(colaUsuario) && EMPTY(colaDirector))
+			THEN
+				recive(impresoraLibre(impresora));
+
+			END
 		END
 	END
 
@@ -38,16 +77,8 @@ BEGIN
 
 		while(true)
 		DO
-			if(!EMPTY(enviarDirector))
-			THEN
-				recive(enviarDirector())
-				delay("1m");
-			
-			[](!EMPTY(enviarUsuario) && EMPTY(enviarDirector))
-			THEN
-				recive(enviarUsuario());
-				delay("1m");
-			END
+			send impresoraLibre(i);
+			recive ( )
 		END
 
 	END
