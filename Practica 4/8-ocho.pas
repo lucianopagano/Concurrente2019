@@ -4,6 +4,12 @@
 //imprime, de acuerdo al orden de llegada, pero siempre dando prioridad a los pedidos del
 //director. Nota: los usuarios y el director no deben esperar a que se imprima el documento.
 
+
+
+//este escript se debe hacer con un administrador que contenga
+//dos queues y luego envia a las impresoras que continuamente envian que estan libres
+
+
 PROGRAM Ocho
 BEGIN
 
