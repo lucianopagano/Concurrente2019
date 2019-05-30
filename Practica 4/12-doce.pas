@@ -12,7 +12,7 @@ BEGIN
 		while(true)
 		DO
 			string muestra = PreparaMuestra();
-			Coordinador!enviarMuestra(muestra)-> muestras.pop(muestra);
+			Coordinador!enviarMuestra(muestra);
 		END
 	END
 

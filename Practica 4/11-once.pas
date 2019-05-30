@@ -44,8 +44,9 @@ BEGIN
 					if(estado == "esperando")
 					THEN
 						estado="atendiendo";
-					
 						Persona[e]!personaEsperar(estado);
+					ELSE
+						
 					END
 
 			[](true);Empleado?AvisarPersona()->
@@ -60,11 +61,10 @@ BEGIN
 		while(true)
 		DO
 			int persona
-			if(true);Persona[*]?llegue(persona)-> cola.pop(persona);
+			if(true);Persona[*]?llegue(persona)-> cola.push(persona);
 			
-			[](!EMPTY(cola))-> 
-							Empleado?estoyLibre();
-							Empleado!obtenerPersona(persona);
+			[](!EMPTY(cola));Empleado?estoyLibre(); ->
+							Empleado!obtenerPersona(cola.pop(persona));
 		END
 	END
 
@@ -75,7 +75,7 @@ BEGIN
 			Cola!estoyLibre();
 			int persona;
 			Cola?obtenerPersona(persona);
-			Estado[persona];
+			Estado[persona]!AvisarPersona();
 		END
 	END
 END
