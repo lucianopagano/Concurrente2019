@@ -40,7 +40,7 @@ BEGIN
 			CoordinadorMedicoPersonas?AtenderPersona(p);
 			//atender persona
 			//realizar receta
-			Persona[p]! 
+			Persona[p]!esperarReceta(receta) 
 		END
 	END
 

@@ -14,7 +14,7 @@ BEGIN
 		THEN
 			// irse
 		ELSE
-			//atencion
+			//atencion mensaje de espera hasta que termine la atencion
 		END
 		
 	END
@@ -46,9 +46,10 @@ BEGIN
 						estado="atendiendo";
 						Persona[e]!personaEsperar(estado);
 					ELSE
+
 						
 					END
-
+					// Mesnaje para el empleado que le informe el estado
 			[](true);Empleado?AvisarPersona()->
 					Persona[e]!personaEsperar(estado);
 
