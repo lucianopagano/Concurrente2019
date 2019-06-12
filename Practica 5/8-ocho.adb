@@ -7,8 +7,11 @@ TASK TYPE Controlador IS
 END Controlador;
 
 TASK BODY Controlador IS
+	
+VAR
 	double temperatura;
 	boolean detener = false;
+BEGIN
 	LOOP
 		delay("10m");
 		temperatura = CalcularTemperatura();
@@ -25,12 +28,14 @@ TASK Central IS
 END Central;
 
 TASK BODY Central IS
+VAR
 	double temperatura;
 	boolean detener = false;
+BEGIN
 	LOOP 
-		SELECT monitorearTemperatura(temperatura,detener);
+		ACCEPT monitorearTemperatura(in double temperatura,out boolean detener);
 				detener = temperatura > 40.00;
-		END SELECT;
+		END monitorearTemperatura;
 	END LOOP;
 END Central;
 var

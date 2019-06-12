@@ -53,14 +53,6 @@ TASK Type Enfermera IS
 
 	END Enfermera;
 
-TASK BODY Enfermera IS
-
-	LOOP
-		SELECT Medico.atenderEnfermera();
-		ELSE Medico.DejarNota();
-
-	END Enfermera;
-
 TASK Type Persona IS
 	END Persona;
 TASK BODY Persona IS

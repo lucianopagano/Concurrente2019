@@ -19,11 +19,11 @@ TASK BODY Recepcionista IS
 	LOOP
 		select 
 			accept entregarReclamo(in string reclamo, out int reclamoId) && darReclamoEmpleado'count == 0;
-				cantReclamos++;
+			    cantReclamos++;
 				reclamos.push(reclamo);
 				reclamoId = cantReclamos;
 			OR
-				when !EMPTY(reclamos)=> accept darReclamoEmpleado();
+				when !EMPTY(reclamos)=> accept darReclamoEmpleado(out string reclamo);
 					reclamo = reclamos.pop();
 
 		end select;

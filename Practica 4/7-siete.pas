@@ -23,8 +23,7 @@ BEGIN
 		recive(esperar[c](estado));
 
 		if(estado == "TO")
-		THEN
-			//irse 
+           			//irse 
 		ELSE
 			string tiempoDescarga = Descarga();
 
